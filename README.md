@@ -33,7 +33,7 @@ const fiftyMinutesInMilliseconds = 50 * 60 * 1000;
 
 // The `interval` is just passsed in for a convenience. It equals
 //  `fiftyMinutesInMilliseconds`
-setSaferInterval((interval) => {
+const clear = setSaferInterval((interval) => {
   const date = new Date();
   // 12pm UTC == 8am EST (8:00am-8:59am)
   if (date.getUTCHours() === 12) { // 0-23 UTC
@@ -53,6 +53,10 @@ setSaferInterval((interval) => {
   //   also just return `undefined`
   return 0;
 }, fiftyMinutesInMilliseconds);
+
+// You can optionally clear the "interval" (behind the scenes, it actually
+//   calls `clearTimeout` against the last `setTimeout` call)
+clear();
 ```
 
 ## Changelog

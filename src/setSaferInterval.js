@@ -15,6 +15,7 @@
  * @returns {void}
  */
 function setSaferInterval (userTimeout, interval = 1000) {
+  let timeoutID;
   let expected = Date.now() + interval;
 
   /**
@@ -48,12 +49,16 @@ function setSaferInterval (userTimeout, interval = 1000) {
     // );
 
     // Adjust for drift
-    setTimeout(
+    timeoutID = setTimeout(
       timeout, Math.max(0, interval - timeDrift) + offset
     );
   }
 
-  setTimeout(timeout, interval);
+  timeoutID = setTimeout(timeout, interval);
+
+  return function clear () {
+    clearTimeout(timeoutID);
+  };
 }
 
 export default setSaferInterval;
