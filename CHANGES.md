@@ -1,5 +1,9 @@
 # CHANGES for `set-safer-interval`
 
+## 0.2.2
+
+- Fix: Provide main `exports`
+
 ## 0.2.1
 
 - Docs: Comment out `clear` to avoid conveying idea that it must be called
