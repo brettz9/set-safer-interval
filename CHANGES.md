@@ -1,5 +1,9 @@
 # CHANGES for `set-safer-interval`
 
+## 0.2.1
+
+- Docs: Comment out `clear` to avoid conveying idea that it must be called
+
 ## 0.2.0
 
 - Enhancement: Return a clear "interval" function

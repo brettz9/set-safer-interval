@@ -54,9 +54,9 @@ const clear = setSaferInterval((interval) => {
   return 0;
 }, fiftyMinutesInMilliseconds);
 
-// You can optionally clear the "interval" (behind the scenes, it actually
-//   calls `clearTimeout` against the last `setTimeout` call)
-clear();
+// You can optionally clear the "interval" later (behind the scenes, it
+//   actually  calls `clearTimeout` against the last `setTimeout` call)
+// clear();
 ```
 
 ## Changelog

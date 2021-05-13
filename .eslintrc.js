@@ -24,7 +24,9 @@ module.exports = {
         'import/no-unresolved': ['error', {
           ignore: ['set-safer-interval']
         }],
-        'no-unused-vars': ['error', {varsIgnorePattern: 'setSaferInterval'}]
+        'no-unused-vars': ['error', {
+          varsIgnorePattern: 'setSaferInterval|clear'
+        }]
       }
     }
   ],

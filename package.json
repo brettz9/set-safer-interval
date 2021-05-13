@@ -1,6 +1,6 @@
 {
   "name": "set-safer-interval",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": "Brett Zamir <brettz9@yahoo.com>",
   "contributors": [],
   "description": "Set intervals with greater precision",
