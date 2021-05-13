@@ -17,6 +17,9 @@ module.exports = {
   overrides: [
     {
       files: '*.md/*.js',
+      globals: {
+        doSomething: 'readonly'
+      },
       rules: {
         'import/no-unresolved': ['error', {
           ignore: ['set-safer-interval']
