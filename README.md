@@ -33,26 +33,35 @@ const fiftyMinutesInMilliseconds = 50 * 60 * 1000;
 
 // The `interval` is just passsed in for a convenience. It equals
 //  `fiftyMinutesInMilliseconds`
-const clear = setSaferInterval((interval) => {
-  const date = new Date();
-  // 12pm UTC == 8am EST (8:00am-8:59am)
-  if (date.getUTCHours() === 12) { // 0-23 UTC
-    // To avoid running twice in the hour, bump forty minutes before
-    //   next check
-    if (date.getUTCMinutes() < 15) {
-      // We landed under 15 minutes, so jumping 40
-      return fortyMinutesInMilliseconds - interval;
+const clear = setSaferInterval(
+  (interval) => {
+    const date = new Date();
+    // 12pm UTC == 8am EST (8:00am-8:59am)
+    if (date.getUTCHours() === 12) { // 0-23 UTC
+      // To avoid running twice in the hour, bump forty minutes before
+      //   next check
+      if (date.getUTCMinutes() < 15) {
+        // We landed under 15 minutes, so jumping 40
+        return fortyMinutesInMilliseconds - interval;
+      }
+
+      // 8:15am-8:59am EST (so safe to increment 50 minutes without
+      //   recurring within the 8am EST (12pm UTC) window)
+      doSomething();
     }
 
-    // 8:15am-8:59am EST (so safe to increment 50 minutes without
-    //   recurring within the 8am EST (12pm UTC) window)
-    doSomething();
+    // Keep normal supplied interval (`fiftyMinutesInMilliseconds`); we could
+    //   also just return `undefined`
+    return 0;
+  },
+  fiftyMinutesInMilliseconds,
+  // The following config object is optional
+  {
+    // May need to set to `true` for certain testing environments which
+    //   break the Date after tests while still allowing it to run
+    exitNoThrow: false
   }
-
-  // Keep normal supplied interval (`fiftyMinutesInMilliseconds`); we could
-  //   also just return `undefined`
-  return 0;
-}, fiftyMinutesInMilliseconds);
+);
 
 // You can optionally clear the "interval" later (behind the scenes, it
 //   actually  calls `clearTimeout` against the last `setTimeout` call)
