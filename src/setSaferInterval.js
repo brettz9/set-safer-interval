@@ -12,9 +12,13 @@
 /**
  * @param {Timer} userTimeout
  * @param {Float} [interval=1000]
+ * @param {PlainObject} [cfg={}]
+ * @param {boolean} cfg.exitNoThrow
  * @returns {void}
  */
-function setSaferInterval (userTimeout, interval = 1000) {
+function setSaferInterval (userTimeout, interval = 1000, {
+  exitNoThrow = false
+} = {}) {
   let timeoutID;
   let expected = Date.now() + interval;
 
@@ -30,6 +34,9 @@ function setSaferInterval (userTimeout, interval = 1000) {
     // Overshooting should not occur
     /* c8 ignore start */
     if (timeDrift > interval) {
+      if (exitNoThrow) {
+        return;
+      }
       throw new Error(
         `Unexpected condition: ${timeDrift} time drift ` +
         `exceeding interval ${interval}`

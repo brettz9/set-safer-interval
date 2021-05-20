@@ -1,5 +1,9 @@
 # CHANGES for `set-safer-interval`
 
+## 0.3.0
+
+- Enhancement: Add `exitNoThrow` option
+
 ## 0.2.2
 
 - Fix: Provide main `exports`
