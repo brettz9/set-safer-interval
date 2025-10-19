@@ -1,4 +1,8 @@
 /**
+ * @typedef {number} Float
+ */
+
+/**
  * Return a value to control whether to increase/decrease the timer, e.g.,
  *   to adjust if there is precession.
  * @callback Timer
@@ -11,14 +15,15 @@
 
 /**
  * @param {Timer} userTimeout
- * @param {Float} [interval=1000]
- * @param {PlainObject} [cfg={}]
- * @param {boolean} cfg.exitNoThrow
- * @returns {void}
+ * @param {Float} [interval]
+ * @param {object} [cfg]
+ * @param {boolean} [cfg.exitNoThrow]
+ * @returns {() => void}
  */
 function setSaferInterval (userTimeout, interval = 1000, {
   exitNoThrow = false
 } = {}) {
+  /** @type {number} */
   let timeoutID;
   let expected = Date.now() + interval;
 

@@ -1,3 +1,4 @@
 .nyc_output
 pnpm-lock.yaml
 test
+eslint.config.js

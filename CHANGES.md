@@ -1,5 +1,9 @@
 # CHANGES for `set-safer-interval`
 
+## 0.4.0
+
+- feat: TypeScript support
+
 ## 0.3.0
 
 - Enhancement: Add `exitNoThrow` option
